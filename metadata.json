@@ -1,0 +1,5 @@
+{
+  "name": "uvy",
+  "description": "High fidelity streaming platform for Hindi movies and TV shows, powered by TMDB and Rive API.",
+  "requestFramePermissions": []
+}

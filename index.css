@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-netflix-red: #e50914;
+  --color-netflix-black: #141414;
+  --color-netflix-dark: #000000;
+  --font-serif: "Newsreader", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    font-size: 14px; /* Reduced base font size from default 16px */
+  }
+  body {
+    @apply bg-black text-white antialiased overflow-x-hidden font-sans;
+  }
+  h1, h2, h3, .brand-font {
+    @apply font-serif italic;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #e50914, #ff0000, #e50914);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: bold;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Netflix Style Cards */
+.netflix-card {
+  @apply relative transition-transform duration-300 ease-out cursor-pointer;
+}
+
+.netflix-card:hover {
+  @apply z-50 scale-110;
+}
+
+.netflix-card-overlay {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4;
+}
+
+.netflix-card:hover .netflix-card-overlay {
+  @apply opacity-100;
+}
+
+/* Horizontal Row Styling */
+.netflix-row {
+  @apply flex gap-3 overflow-x-auto pb-8 pt-4 scroll-smooth;
+}
+
+.netflix-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.nav-glass {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0));
+  transition: background-color 0.4s ease;
+}
+
+.nav-glass-scrolled {
+  background-color: #141414;
+}
+
+/* ── Star Sports tab utilities ── */
+.live-dot {
+  display: inline-block;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  background: #dc2626;
+  animation: live-pulse 1.6s ease-out infinite;
+}
+
+.badge-live {
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-transform: uppercase;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.snap-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.snap-row > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.4s ease-out both;
+}
+
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(220,38,38,0.7); }
+  70%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
